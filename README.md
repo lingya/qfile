@@ -91,124 +91,123 @@ java虽然有很多优点，但其语法臃肿繁琐一直被人吐槽，作为�
 
 - 使用QTxt读取text.txt的内容，并进行其他操作
 
-       import java.utl.*;
-       import qfile.*;
+        import java.utl.*;
+        import qfile.*;
+        public class Test {
        
-       public class Test {
-       //123.txt的内容
-       //I am happy
-       //I am happy
-       //I am happy
+            //123.txt的内容
+            //I am happy
+            //I am happy
+            //I am happy
        
-        public static void main(String[] args) throws Exception{
-	        String path = "123.txt";
-	        qfile.QTxt qt = new qfile.QTxt(path);
+            public static void main(String[] args) throws Exception{
+                String path = "123.txt";
+              qfile.QTxt qt = new qfile.QTxt(path);
           
-          System.out.println(文章内容:);
-	      System.out.println(qt.getContent()); 
-          //获取文章内容 
+                System.out.println(文章内容:);
+              System.out.println(qt.getContent()); 
+                //获取文章内容 
           
-          System.out.println("happy出现的次数："+qt.countWord("happy"));
-          //单个统计字符串出现次数
+                System.out.println("happy出现的次数："+qt.countWord("happy"));
+                //单个统计字符串出现次数
           
-          Map<String,String> m = new HashMap<String,String>();
-	      m.put("I", "you");m.put("am", "are");m.put("happy", "sad");
-          System.out.println(替换后的字符串:)
-	      System.out.println(qt.replaceContent(m));
-          //批量替换，但只是返回被替换后的字符串，并不会修改替换的内容
+                Map<String,String> m = new HashMap<String,String>();
+              m.put("I", "you");m.put("am", "are");m.put("happy", "sad");
+                System.out.println(替换后的字符串:)
+              System.out.println(qt.replaceContent(m));
+                //批量替换，但只是返回被替换后的字符串，并不会修改替换的内容
           
-	      qt.writeByReplacedContent(m);
-          //批量替换后，会更改对象属性并修改文件内容
-          System.out.println("替换后文件的内容：")
-    	  System.out.println(qt.getContent());
+              qt.writeByReplacedContent(m);
+                //批量替换后，会更改对象属性并修改文件内容
+                System.out.println("替换后文件的内容：")
+              System.out.println(qt.getContent());
+            }
         }
-       }
-       
-       /*************Out Put*****************************
-       文章内容:
-       I am happy
-       I am happy
-       I am happy 
-       happy出现的次数:3
-       替换后的字符串:
-       you are sad
-       you are sad
-       you are sad
-       替换后文件的内容：
-       you are sad
-       you are sad
-       you are sad
-       **************************************************/
+        /*************Out Put*****************************
+        文章内容:
+            I am happy
+            I am happy
+            I am happy 
+            happy出现的次数:3
+        替换后的字符串:
+           you are sad
+           you are sad
+           you are sad
+        替换后文件的内容：
+           you are sad
+           you are sad
+           you are sad
+        **************************************************/
        
 <br>
 
 - 使用QJson解析json
 
-       import qfile.*;
+        import qfile.*;
        
-       public class Test{
-       //123.json的内容
-       //   {
-       //        "long":123,
-       //        "double":456.4,
-       //        "String":"this is str",
-       //        "boolean":true,
-       //        "array":[1,2,3],
-       //    "obj":{"str":"this is str in obj"},
-       //   }
-         public static void main(String[] avgs){
+        public class Test{
+           //123.json的内容
+           //   {
+           //        "long":123,
+           //        "double":456.4,
+           //        "String":"this is str",
+           //        "boolean":true,
+           //        "array":[1,2,3],
+           //    "obj":{"str":"this is str in obj"},
+           //   }
+            public static void main(String[] avgs){
          
-             QJson qj = new QJson(path);
-        	 System.out.println("内容：");
-    		 System.out.println(qj.getJsonStr());
-    		
-    		 QJson.JSONObject jo = qj.getJsonObj();
-    		 System.out.println("直接输出该对象信息:" + jo);
-    		
-    		 Set<String> s = jo.getKeys();
-    		 Iterator<String> iter = s.iterator(); 
-    		 System.out.println("该对象有如下键值:");
-    		 while(iter.hasNext()){
-    		  	 String key = iter.next();
-    			 System.out.println(key);
-    		 }
-    		
-    		 System.out.println("根据键值获取数据");
-    		 System.out.println("boolean类型 --" + jo.getBoolean("boolean"));
-    		 System.out.println("String类型 --" + jo.getString("String"));
-    		 System.out.println("long类型 --" + jo.getLong("long"));
-    		 System.out.println("double类型 --" + jo.getDouble("double"));
-    		 System.out.println("array类型 --" + jo.getJSONArray("array"));
-    		 System.out.println("obj类型 --" + jo.getJSONObject("obj")); 
-             
-            String str="{\"abc\":123}";
-             QJson.JSONObject jo2 = QJson.buildJSONObject(str);
-             System.out.println(jo2);
-             //允许以字符串形式的方式获取一个内部类的实例
-          }
-       }
+                 QJson qj = new QJson(path);
+               System.out.println("内容：");
+             System.out.println(qj.getJsonStr());
+            
+             QJson.JSONObject jo = qj.getJsonObj();
+             System.out.println("直接输出该对象信息:" + jo);
+            
+             Set<String> s = jo.getKeys();
+             Iterator<String> iter = s.iterator(); 
+             System.out.println("该对象有如下键值:");
+             while(iter.hasNext()){
+                 String key = iter.next();
+               System.out.println(key);
+             }
+            
+             System.out.println("根据键值获取数据");
+             System.out.println("boolean类型 --" + jo.getBoolean("boolean"));
+             System.out.println("String类型 --" + jo.getString("String"));
+             System.out.println("long类型 --" + jo.getLong("long"));
+             System.out.println("double类型 --" + jo.getDouble("double"));
+             System.out.println("array类型 --" + jo.getJSONArray("array"));
+             System.out.println("obj类型 --" + jo.getJSONObject("obj")); 
+                 
+                String str="{\"abc\":123}";
+                 QJson.JSONObject jo2 = QJson.buildJSONObject(str);
+                 System.out.println(jo2);
+                 //允许以字符串形式的方式获取一个内部类的实例
+            }
+        }
     
-       /*****************Out Put********************
-       内容：
-       {"long":123,"double":456.4,"String":"this is str","boolean":true,"array":[1,2,3],"obj":{"str":"this is str in obj"},}
-       直接输出该对象信息:
-       QJson.JSONObject{"boolean":true,"array":QJson.JSONArray[1,2,3],"double":456.4,"obj":QJson.JSONObject{"str":"this is str in obj"},"String":"this is str","long":123}
-       该对象有如下键值:
-       boolean
-       array
-       double
-       obj
-       String
-       long
-       根据键值获取数据
-       boolean类型 --true
-       String类型 --this is str
-       long类型或int类型 --123
-       double类型或float类型  --456.4
-       array类型 --QJson.JSONArray[1,2,3]
-       obj类型 --QJson.JSONObject{"str":"this is str in obj"}
-       QJson.JSONObject{"abc":123}
-       *****************************************************/
+           /*****************Out Put********************
+           内容：
+           {"long":123,"double":456.4,"String":"this is str","boolean":true,"array":[1,2,3],"obj":{"str":"this is str in obj"},}
+           直接输出该对象信息:
+           QJson.JSONObject{"boolean":true,"array":QJson.JSONArray[1,2,3],"double":456.4,"obj":QJson.JSONObject{"str":"this is str in obj"},"String":"this is str","long":123}
+           该对象有如下键值:
+           boolean
+           array
+           double
+           obj
+           String
+           long
+           根据键值获取数据
+           boolean类型 --true
+           String类型 --this is str
+           long类型或int类型 --123
+           double类型或float类型  --456.4
+           array类型 --QJson.JSONArray[1,2,3]
+           obj类型 --QJson.JSONObject{"str":"this is str in obj"}
+           QJson.JSONObject{"abc":123}
+           *****************************************************/
 
 
 <br>
@@ -216,47 +215,45 @@ java虽然有很多优点，但其语法臃肿繁琐一直被人吐槽，作为�
 - 使用QHtml解析html
 
         import qfile.*
-        
         public class Test{
-        /**123.html的内容
-        <html>
-        <body>
-        <title>测试</title>
-        <div class="></div>
-        <div class="123" style="background">123</div>
-        <div class="123">123</div>
-        <div class="123">123</div>
-        <a href="123.html">123.html</a>
-        <a href="123.html">123.html</a>
-        <a href="123.html">123.html</a>
-        <a href="123.html">123.html</a>
-        </body>
-        </html>
-        **/
+            /**123.html的内容
+            <html>
+            <body>
+            <title>测试</title>
+            <div class="></div>
+            <div class="123" style="background">123</div>
+            <div class="123">123</div>
+            <div class="123">123</div>
+            <a href="123.html">123.html</a>
+            <a href="123.html">123.html</a>
+            <a href="123.html">123.html</a>
+            <a href="123.html">123.html</a>
+            </body>
+            </html>
+            **/
             public static void main(String[] avgs){
-            
                 QHtml qh = new QHtml(path);
-    	        System.out.println("html的题目:"+qh.getTitle());
+              System.out.println("html的题目:"+qh.getTitle());
                 
-		        System.out.println("html内容:"+qh.getContent());
+            System.out.println("html内容:"+qh.getContent());
                 
-		        System.out.println("div标签出现的数目："+qh.countTag("div"));
-		        QHtml.NodeArray na = qh.getTag("div");
+            System.out.println("div标签出现的数目："+qh.countTag("div"));
+            QHtml.NodeArray na = qh.getTag("div");
                 System.out.println("它们分别是");
-		        for(int i = 0;i<na.size();i++){
-			        QHtml.Node n = na.get(i);
-			        System.out.println(n);
-			        System.out.println("class属性的值为:" + n.getValue("class"));
-		        }
+            for(int i = 0;i<na.size();i++){
+              QHtml.Node n = na.get(i);
+              System.out.println(n);
+              System.out.println("class属性的值为:" + n.getValue("class"));
+            }
 
-		        System.out.println("a标签出现的数目："+qh.countTag("a"));
-		        QHtml.NodeArray na1 = qh.getTag("a");
+            System.out.println("a标签出现的数目："+qh.countTag("a"));
+            QHtml.NodeArray na1 = qh.getTag("a");
                 System.out.println("它们分别是");
-		        for(int i = 0;i<na.size();i++){
-			        QHtml.Node n = na1.get(i);
-			        System.out.println(n);
-			        System.out.println("href属性的值为:" +(n.getValue("href"));
-		        }
+            for(int i = 0;i<na.size();i++){
+              QHtml.Node n = na1.get(i);
+              System.out.println(n);
+              System.out.println("href属性的值为:" +(n.getValue("href"));
+            }
             
                 String str = qh.getContent();
                 QHtml.Html h = QHtml.buildHtml(str);
@@ -333,25 +330,25 @@ java虽然有很多优点，但其语法臃肿繁琐一直被人吐槽，作为�
             public static void main(String[] avgs){
             String path = "123.csv";
                 QCSV qc = new QCSV(path);
-    	        System.out.println("内容：");
-	           	System.out.println(qc.getContent());
+              System.out.println("内容：");
+              System.out.println(qc.getContent());
                    
-		        System.out.println("数据行数： "+ qc.getLine());
-		        
+            System.out.println("数据行数： "+ qc.getLine());
+            
                 System.out.println("矩阵形式：");
                 QCSV.Matrix  qm = qc.getMat();
-		        System.out.println(qm);
+            System.out.println(qm);
                 
-		        System.out.println("只提取数字部分的子矩阵");
-		        QCSV.Matrix qm2 = qm.getDataToMatrix(1, 2, qc.getLine()-1, 2);
-		        System.out.println(qm2);
-		        
+            System.out.println("只提取数字部分的子矩阵");
+            QCSV.Matrix qm2 = qm.getDataToMatrix(1, 2, qc.getLine()-1, 2);
+            System.out.println(qm2);
+            
                 System.out.println("竖轴求和是：" + qm2.sumYToInt(0));
-		        
+            
                 System.out.println("竖轴求平均是：" + qm2.averYToDouble(0));
-		        
+            
                 System.out.println("按\"一班\"分类的子矩阵:");
-		        System.out.println(qm.classfiy(1,"一班" ));
+            System.out.println(qm.classfiy(1,"一班" ));
                 
             }
         }
