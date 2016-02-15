@@ -102,7 +102,7 @@ java虽然有很多优点，但其语法臃肿繁琐一直被人吐槽，作为�
        
             public static void main(String[] args) throws Exception{
                 String path = "123.txt";
-              qfile.QTxt qt = new qfile.QTxt(path);
+              QTxt qt = new QTxt(path);
           
                 System.out.println(文章内容:);
               System.out.println(qt.getContent()); 
